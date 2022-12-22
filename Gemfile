@@ -70,3 +70,6 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+# ActiveModelSerializers brings convention over configuration to your JSON generation.
+gem 'active_model_serializers', '~> 0.10.0'
