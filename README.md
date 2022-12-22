@@ -1,5 +1,16 @@
 # README
 
+comands
+
+* `rails db:create db:migrate db:seed`
+
+* `yarn add react react-dom`
+
+* `yarn add @babel/core @babel/preset-env @babel/preset-react babel-loader --dev`
+
+* `npm i`
+
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 

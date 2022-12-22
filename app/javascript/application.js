@@ -1,11 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-function App() {
-  return (<h1>Hello World to new video room with react delete controllers js!</h1>);
-}
+import App from "./components/App";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Rooms from "./components/Rooms/Rooms";
+import Room from "./components/Room/Room";
 
 ReactDOM.render(
-  <App/>,
+  <BrowserRouter>
+    <Routes>
+      <Route path='/' element={<Rooms/>}/>
+      <Route path='/room/:id' element={<Room/>}/>
+    </Routes>
+  </BrowserRouter>,
   document.getElementById('root'),
 );
