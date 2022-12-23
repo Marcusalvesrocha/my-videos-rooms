@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Room = ({attributes}) => {
-  console.log(attributes)
   return(
     <div className="card">
       <div className="room-title">{attributes.title}</div>
