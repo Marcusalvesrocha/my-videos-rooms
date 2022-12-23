@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Menu from "./components/Menu/Menu";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Rooms from "./components/Rooms/Rooms";
 import Room from "./components/Room/Room";
