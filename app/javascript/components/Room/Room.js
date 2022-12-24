@@ -4,7 +4,8 @@ import { Link, useParams } from "react-router-dom";
 
 const Room = () => {
   const [room, setRoom] = useState({})
-  const [videos, setVideos] = useState([])
+  const [videoId, setVideoId] = useState('SqZNMvIEHhs')
+  const [loaded, setLoaded] = useState(false)
 
   const { id } = useParams();
 
@@ -12,45 +13,39 @@ const Room = () => {
     axios.get(`/api/v1/rooms/${id}`)
       .then(resp => {
         setRoom(resp.data)
-        getVideos()
+        setLoaded(true)
       })
       .catch(resp => console.log(resp))
 
-  }, [])
+  }, [videoId] == 'SqZNMvIEHhs')
 
-  const getVideos = () => {
-    const key = 'AIzaSyB_-mKJ7FMHVP962LNyHQ9jJeuanx5uGNo';
-    const part = 'snippet';
-    const type = 'video'
-    const q = room.title;
-    const url = `https://www.googleapis.com/youtube/v3/search?key=${key}&q=${q}&part=${part}&type=${type}`
-
-    axios.get(url)
-    .then(resp => setVideos(resp.data.items))
-    .catch(resp => console.log(resp))
+  const Main = () => {
+    return <iframe width="800px" height="500px" src={`https://www.youtube.com/embed/${videoId}?list=RDSqZNMvIEHhs`} title="System Of A Down - Spiders (Official HD Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   }
 
-  const handleVideos = videos.map(video => {
-
-    console.log('---------------------youtubeapi')
-    console.log(video.id.videoId)
-    return (
-      <li>
-        <iframe src={`https://www.youtube.com/embed/${video.id.videoId}`} title="The Best of Metallica (part 1)🎸Лучшие песни группы Metallica -1 часть🎸The Greatest Hits of Metallica" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </li>
-    )
-  })
-
+  const changeVideo = (idVideo) => {
+    setVideoId(idVideo);
+  };
 
   return(
-
     <div>
+      <nav>
+        <Link to="/">Home</Link>
+      </nav>
+
       <h1>{ room.title }</h1>
-      <ul>{handleVideos}</ul>
-      <iframe width="1280" height="661" src="https://www.youtube.com/embed/SqZNMvIEHhs?list=RDSqZNMvIEHhs" title="System Of A Down - Spiders (Official HD Video)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      {loaded && (
+        <div>
+          <Main />
+          <img onClick={(_) => changeVideo('SqZNMvIEHhs')} src="https://i.ytimg.com/vi/SqZNMvIEHhs/hqdefault.jpg?sqp=-oaymwEiCKgBEF5IWvKriqkDFQgBFQAAAAAYASUAAMhCPQCAokN4AQ==&rs=AOn4CLD3VCj60EFIYbzM44BUlytZMH_jgQ"/>
+          <img onClick={(_) => changeVideo('Bz2fYl7Vn4g')} src="https://i.ytimg.com/vi/Bz2fYl7Vn4g/hqdefault.jpg?sqp=-oaymwEiCKgBEF5IWvKriqkDFQgBFQAAAAAYASUAAMhCPQCAokN4AQ==&rs=AOn4CLD2RDmxHxAqsk3fDGYzwlE-JGznIw"/>
+          <img onClick={(_) => changeVideo('I5EdxUG1K-c')} src="https://i.ytimg.com/vi/I5EdxUG1K-c/hqdefault.jpg?sqp=-oaymwE8CKgBEF5IWvKriqkDLwgBFQAAAAAYASUAAMhCPQCAokN4AfABAfgB1AaAAuADigIMCAAQARhlIFgoSTAP&rs=AOn4CLCR1VSDeF304u4vl5_-xY4T1NhLqQ"/>
+          <img onClick={(_) => changeVideo('DLYphcpexSU')} src="https://i.ytimg.com/vi/DLYphcpexSU/hqdefault.jpg?sqp=-oaymwE8CKgBEF5IWvKriqkDLwgBFQAAAAAYASUAAMhCPQCAokN4AfABAfgB_gmAAtAFigIMCAAQARh_IBMoGjAP&rs=AOn4CLAYVARUKNxcRf3Tdm3ErEdN7B8fyg"/>
+          <img onClick={(_) => changeVideo('tKrbNY51g-w')} src="https://i.ytimg.com/vi/tKrbNY51g-w/hqdefault.jpg?sqp=-oaymwE8CKgBEF5IWvKriqkDLwgBFQAAAAAYASUAAMhCPQCAokN4AfABAfgB1AaAAuADigIMCAAQARhlIGUoZTAP&rs=AOn4CLBV7YMTgtySmPR4etlPYbn6RHRs_A"/>
+          <img onClick={(_) => changeVideo('HnC4-WtWivI')} src="https://i.ytimg.com/vi/HnC4-WtWivI/hqdefault.jpg?sqp=-oaymwEiCKgBEF5IWvKriqkDFQgBFQAAAAAYASUAAMhCPQCAokN4AQ==&rs=AOn4CLDjrtSEW503FUL9kHehdFThKajm4g"/>
 
-
-      <Link to="/">Home</Link>
+        </div>
+      )}
     </div>
   )
 }
