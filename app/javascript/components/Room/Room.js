@@ -65,8 +65,8 @@ const Room = () => {
   }
 
   return(
-    <div>
-      <nav>
+    <div className="home">
+      <nav className="navLink">
         <Link to="/">Home</Link>
       </nav>
       <h1>{ room.title }</h1>

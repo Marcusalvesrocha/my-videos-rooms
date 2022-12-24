@@ -44,7 +44,7 @@ const Rooms = () => {
         </div>
         ) : (
         <div>
-          <div className="header">
+          <div className="new-room">
             <h1>Criar Sala</h1>
           </div>
           <div className="room-form">
