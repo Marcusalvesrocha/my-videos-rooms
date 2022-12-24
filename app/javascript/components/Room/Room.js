@@ -48,14 +48,11 @@ const Room = () => {
   };
 
   const handleChange = (e) => {
-    console.log('name:', e.target.name, 'value:', e.target.value)
     setReview(Object.assign({}, review, {[e.target.name]: e.target.value}))
-    console.log('review:', review)
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log('handleSubmit', review)
 
     const csrfToken = document.querySelector('[name=csrf-token]').content
     axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
