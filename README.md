@@ -1,10 +1,12 @@
-# README
+# Video Room
 
-comands
+Instruções para executar o app
+
+Executar os commandos abaixo:
 
 * `rails db:create db:migrate db:seed`
 
-O db:seed cria o usuário master
+O db:seed criará o usuário master
 
 * `npm i`
 
@@ -20,4 +22,3 @@ Tecnologias utilizadas:
 * SQLite
 
 * YoutubeApi(porém foi retirada por causa do limite de acesso)
-
