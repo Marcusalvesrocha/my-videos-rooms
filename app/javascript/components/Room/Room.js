@@ -2,9 +2,11 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Review from "./Review";
+import ReviewForm from "./ReviewForm";
 
 const Room = () => {
   const [room, setRoom] = useState({})
+  const [review, setReview] = useState({title: '', description: '', score: 0})
   const [videoId, setVideoId] = useState('SqZNMvIEHhs')
   const [loaded, setLoaded] = useState(false)
 
@@ -45,24 +47,49 @@ const Room = () => {
     loaded && setVideoId(idVideo);
   };
 
+  const handleChange = (e) => {
+    console.log('name:', e.target.name, 'value:', e.target.value)
+    setReview(Object.assign({}, review, {[e.target.name]: e.target.value}))
+    console.log('review:', review)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log('handleSubmit', review)
+
+    const csrfToken = document.querySelector('[name=csrf-token]').content
+    axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
+
+    axios.post('/api/v1/reviews', {review})
+      .then(resp => {
+        window.location.reload(false);
+      })
+      .catch(error = {})
+  }
+
   return(
     <div>
       <nav>
         <Link to="/">Home</Link>
       </nav>
-
       <h1>{ room.title }</h1>
       {loaded && (
         <div>
           <Main />
           <VideosOptions />
-          {loaded && (
+
             <div className="reviews">
                 <h2>Comentários - {`${room.avg_score}(${room.reviews.length})`} {}</h2>
                 <h3>Rating: {`${room.avg_score}(${room.reviews.length})`} {}</h3>
                 {room.reviews.map((review) => <Review key={review.id} review={review}/>)}
             </div>
-          )}
+
+          <ReviewForm
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            room={room}
+            review={review}
+          />
         </div>
       )}
     </div>
