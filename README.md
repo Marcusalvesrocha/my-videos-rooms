@@ -4,34 +4,20 @@ comands
 
 * `rails db:create db:migrate db:seed`
 
-Rodar o db:seed somente se quiser dados para teste
-
-* `yarn add react react-dom`
-
-* `yarn add @babel/core @babel/preset-env @babel/preset-react babel-loader --dev`
+O db:seed cria o usuário master
 
 * `npm i`
 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Tecnologias utilizadas:
 
-Things you may want to cover:
+* Ruby 3.1.2
 
-* Ruby version
+* Rails 7.0.4
 
-* System dependencies
+* React 18.2
 
-* Configuration
+* SQLite
 
-* Database creation
+* YoutubeApi(porém foi retirada por causa do limite de acesso)
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
