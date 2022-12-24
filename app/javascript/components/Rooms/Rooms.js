@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Navigate } from "react-router-dom";
 import axios from "axios";
 import Room from './Room'
 import RoomForm from './RoomForm'
@@ -6,6 +7,7 @@ import RoomForm from './RoomForm'
 const Rooms = () => {
   const [rooms, setRooms] = useState([])
   const [room, setRoom] = useState({title: '', user_id: '1'})
+  const [newRoom, setNewRoom] = useState(false)
 
   useEffect(()=>{
     axios.get('api/v1/rooms.js')
@@ -18,42 +20,49 @@ const Rooms = () => {
   })
 
   const handleChange = (e) => {
-    console.log('name:', e.target.name, 'value:', e.target.value)
     setRoom(Object.assign({}, room, {[e.target.name]: e.target.value}))
-    console.log('room:', room)
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    console.log('handleSubmit', room)
 
     const csrfToken = document.querySelector('[name=csrf-token]').content
     axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
 
     axios.post('/api/v1/rooms', {room})
       .then(resp => {
-        window.location.reload(false);
+        setRoom(resp.data)
+        setNewRoom(true)
       })
       .catch(error = {})
   }
 
   return(
     <div className="home">
-      <div className="new-room">Criar Sala</div>
-      <div className="room-from">
-        <RoomForm
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          room={room}
-        />
-      </div>
-      <div className="header">
-        <h1>Lista de Salas</h1>
-        <div className="subheader">Escolha uma sala ou crie uma, para curtir videos</div>
-      </div>
-      <div className="grid">
-        <ul>{grid}</ul>
-      </div>
+      {newRoom ? (
+        <div>
+          <Navigate to={`/rooms/${room.id}`}/>
+        </div>
+        ) : (
+        <div>
+          <div className="header">
+            <h1>Criar Sala</h1>
+          </div>
+          <div className="room-form">
+            <RoomForm
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
+              room={room}
+            />
+          </div>
+          <div className="header">
+            <h1>Lista de Salas</h1>
+            <div className="subheader">Escolha ou crie uma sala para curtir videos</div>
+          </div>
+          <div className="grid">
+            {grid}
+          </div>
+        </div>
+      )}
     </div>
   )
 }

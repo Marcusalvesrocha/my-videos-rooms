@@ -1,7 +1,6 @@
 import React from "react";
 
 const RoomForm = ({ handleChange, handleSubmit, room }) => {
-
   return (
     <div>
       <div className="wrapper">

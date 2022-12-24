@@ -5,7 +5,7 @@ module Api
       before_action :set_room, only: %i[show update destroy]
 
       def index
-        rooms = Room.all
+        rooms = Room.all.order(created_at: :desc)
         render json: rooms, include: %i[user reviews]
       end
 
