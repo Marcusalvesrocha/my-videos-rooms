@@ -30,7 +30,7 @@ const Room = () => {
     return(
       <div>
         {loaded && (
-          <div>
+          <div className="videos">
             <img onClick={(_) => changeVideo('SqZNMvIEHhs')} src="https://i.ytimg.com/vi/SqZNMvIEHhs/hqdefault.jpg?sqp=-oaymwEiCKgBEF5IWvKriqkDFQgBFQAAAAAYASUAAMhCPQCAokN4AQ==&rs=AOn4CLD3VCj60EFIYbzM44BUlytZMH_jgQ"/>
             <img onClick={(_) => changeVideo('Bz2fYl7Vn4g')} src="https://i.ytimg.com/vi/Bz2fYl7Vn4g/hqdefault.jpg?sqp=-oaymwEiCKgBEF5IWvKriqkDFQgBFQAAAAAYASUAAMhCPQCAokN4AQ==&rs=AOn4CLD2RDmxHxAqsk3fDGYzwlE-JGznIw"/>
             <img onClick={(_) => changeVideo('I5EdxUG1K-c')} src="https://i.ytimg.com/vi/I5EdxUG1K-c/hqdefault.jpg?sqp=-oaymwE8CKgBEF5IWvKriqkDLwgBFQAAAAAYASUAAMhCPQCAokN4AfABAfgB1AaAAuADigIMCAAQARhlIFgoSTAP&rs=AOn4CLCR1VSDeF304u4vl5_-xY4T1NhLqQ"/>
