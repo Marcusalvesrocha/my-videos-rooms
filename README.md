@@ -8,7 +8,14 @@ Executar os commandos abaixo:
 
 O db:seed criará o usuário master
 
+Caso não tenha o React instalado, rodar o comando:
+
+* npm install --save react react-dom
+
+Para instalar as dependências, executar:
+
 * `npm i`
+
 
 
 Tecnologias utilizadas:
