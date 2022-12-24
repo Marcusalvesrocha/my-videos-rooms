@@ -3,6 +3,7 @@
 comands
 
 * `rails db:create db:migrate db:seed`
+
 Rodar o db:seed somente se quiser dados para teste
 
 * `yarn add react react-dom`
